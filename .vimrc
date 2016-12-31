@@ -23,16 +23,11 @@ set list lcs=tab:\¦\    " 显示对齐线 | ¦ ┆ │
 
 colorscheme Porsche
 
-
-"set cursorline   
-"hi CursorLine   cterm=NONE "ctermbg=darkred ctermfg=white   
-"hi CursorColumn cterm=NONE "ctermbg=darkred ctermfg=white   
-
 set cursorline
-hi cursorline cterm=none term=none
-autocmd WinEnter * setlocal cursorline
-autocmd WinLeave * setlocal nocursorline
-highlight CursorLine guibg=#30F010 ctermbg=189
+"hi cursorline cterm=none term=none
+"autocmd WinEnter * setlocal cursorline
+"autocmd WinLeave * setlocal nocursorline
+"highlight CursorLine guibg=#30F010 ctermbg=189
 
 
 "自动补全
@@ -198,3 +193,46 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Clean"     : "✔︎",
     \ "Unknown"   : "?"
     \ }
+
+
+
+"=========== cscope ===============
+if has("cscope")
+    set csprg=/usr/local/bin/cscope
+    set csto=0
+    set cst
+    set nocsverb
+    " add any database in current directory
+    if filereadable("cscope.out")
+        cs add cscope.out
+    " else add database pointed to by environment
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
+    set csverb
+endif
+nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+
+
+"=========== omnicppcomplete ===============
+let OmniCpp_GlobalScopeSearch = 1
+let OmniCpp_NamespaceSearch = 2
+let OmniCpp_DisplayMode = 1
+let OmniCpp_ShowScopeInAbbr = 1
+let OmniCpp_ShowPrototypeInAbbr = 1
+let OmniCpp_ShowAccess = 1
+let OmniCpp_MayCompleteDot = 1
+let OmniCpp_MayCompleteArrow = 1
+let OmniCpp_MayCompleteScope = 1
+let OmniCpp_MayCompleteScope = 1
+let OmniCpp_SelectFirstItem = 1
+let OmniCpp_DefaultNamespace=["std"]
+let OmniCpp_SelectFirstItem = 2
