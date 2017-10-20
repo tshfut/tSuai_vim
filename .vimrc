@@ -1,4 +1,3 @@
-"========== for vim ==============
 syntax enable           " 开启语法高亮
 set t_Co=256            " 开启256色显示
 set scrolloff=3         " 滚动时保持边距5行
@@ -20,8 +19,13 @@ set encoding=utf-8      "
 set ignorecase          " 搜索忽略大小写
 set nopaste             " 切换到正常模式
 set list lcs=tab:\¦\    " 显示对齐线 | ¦ ┆ │
+set backspace=indent,eol,start
 
 colorscheme Porsche
+"colorscheme space-vim-dark
+
+"set listchars=tab:\¦\ ,trail:.,extends:>,precedes:<,eol:$
+set listchars=tab:\¦\ ,trail:.,extends:>,precedes:<
 
 set cursorline
 "hi cursorline cterm=none term=none
@@ -31,21 +35,22 @@ set cursorline
 
 
 "自动补全
-:inoremap ( ()<ESC>i
-:inoremap ) <c-r>=ClosePair(')')<CR>
-:inoremap { {<CR>}<ESC>O
-:inoremap } <c-r>=ClosePair('}')<CR>
-:inoremap [ []<ESC>i
-:inoremap ] <c-r>=ClosePair(']')<CR>
-:inoremap " ""<ESC>i
-:inoremap ' ''<ESC>i
-function! ClosePair(char)
-    if getline('.')[col('.') - 1] == a:char
-        return "\<Right>"
-    else
-        return a:char
-    endif
-endfunction"
+":inoremap ( ()<ESC>i
+":inoremap ( ()<ESC>i
+":inoremap ) <c-r>=ClosePair(')')<CR>
+":inoremap { {<CR>}<ESC>O
+":inoremap } <c-r>=ClosePair('}')<CR>
+":inoremap [ []<ESC>i
+":inoremap ] <c-r>=ClosePair(']')<CR>
+":inoremap " ""<ESC>i
+":inoremap ' ''<ESC>i
+"function! ClosePair(char)
+"    if getline('.')[col('.') - 1] == a:char
+"        return "\<Right>"
+"    else
+"        return a:char
+"    endif
+"endfunction"
 
 
 
@@ -69,7 +74,19 @@ nmap <silent> <leader>ff ::shell<cr>
 
 
 
+"============= for resize vim window =================
+nmap w= :resize +3<CR>
+nmap w- :resize -3<CR>
+nmap w, :vertical resize -3<CR>
+nmap w. :vertical resize +3<CR>
 
+
+
+"============= for vim-smooth-scroll =================
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
 "========== for NERDTree ==============
 "let g:NERDTree_title='NERD Tree'
@@ -132,10 +149,24 @@ let g:ctrlp_funky_nerdtree_include_files = 1
 
 
 "========== for vim-airline ==============
+let g:airline_powerline_fonts=1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
 let g:airline_theme="light" "light 
 let g:airline#extensions#tabline#enabled = 1 
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+
 
 
 
@@ -236,3 +267,27 @@ let OmniCpp_MayCompleteScope = 1
 let OmniCpp_SelectFirstItem = 1
 let OmniCpp_DefaultNamespace=["std"]
 let OmniCpp_SelectFirstItem = 2
+
+
+"===============NERD Commenter=========================
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+

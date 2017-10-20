@@ -85,8 +85,8 @@ call s:hi('Normal' , 249 , s:n_bg , 'None' , 'None' )
 call s:hi('Cursor' , 88 , 214 , 'bold' , 'bold')
 
 call s:hi('LineNr'       , 238 , s:n_bg-1 , 'None' , 'None' )
-call s:hi('CursorLine'   , ''  , s:n_bg-1 , 'None' , 'None' )
-call s:hi('CursorLineNr' , 134 , s:n_bg-1 , 'None' , 'None' )
+call s:hi('CursorLine'   , ''  , s:n_bg-1 , 'bold' , 'None' )
+call s:hi('CursorLineNr' , 134 , s:n_bg-1 , 'bold' , 'bold' )
 call s:hi('CursorColumn' , ''  , s:n_bg-1 , 'None' , 'None')
 
 call s:hi('ColorColumn' , '' , s:n_bg-1 , 'None' , 'None')
